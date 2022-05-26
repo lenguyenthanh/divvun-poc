@@ -5,14 +5,14 @@ plugins {
     checkstyle
     distribution
     maven
-    id("org.omegat.gradle") version "1.4.2"
+    id("org.omegat.gradle") version "1.5.7"
 }
 
 version = "0.0.1"
 
 omegat {
-    version = "5.4.1"
-    pluginClass = "org.omegat.filters2.text.dokuwiki.DokuWikiFilter"
+    version = "5.7.1"
+    pluginClass = "divvun.Divvun"
 }
 
 dependencies {
