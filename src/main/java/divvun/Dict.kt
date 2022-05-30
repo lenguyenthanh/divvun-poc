@@ -1,0 +1,5 @@
+package divvun
+
+
+class Dict {
+}

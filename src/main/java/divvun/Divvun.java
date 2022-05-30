@@ -35,19 +35,39 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.omegat.core.Core;
+import org.omegat.core.CoreEvents;
+import org.omegat.core.events.IApplicationEventListener;
+import org.omegat.externalfinder.item.ExternalFinderItemPopupMenuConstructor;
 import org.omegat.filters2.AbstractFilter;
 import org.omegat.filters2.FilterContext;
 import org.omegat.filters2.Instance;
+import org.omegat.gui.editor.EditorController;
 import org.omegat.util.LinebreakPreservingReader;
 import org.omegat.util.OStrings;
 
 
 public class Divvun {
 
-   /**
-    * Plugin loader.
-    */
-   public static void loadPlugins() {
-      Core.registerMarkerClass(divvun.DivvunMarker.class);
-   }
+    /**
+     * Plugin loader.
+     */
+    public static void loadPlugins() {
+        Core.registerMarkerClass(divvun.DivvunMarker.class);
+        CoreEvents.registerApplicationEventListener(generateIApplicationEventListener());
+    }
+
+    private static IApplicationEventListener generateIApplicationEventListener() {
+        return new IApplicationEventListener() {
+
+            @Override
+            public void onApplicationStartup() {
+                EditorController editor = (EditorController) Core.getEditor();
+                editor.registerPopupMenuConstructors(100, new SuggestionsPopUp(editor));
+            }
+
+            @Override
+            public void onApplicationShutdown() {
+            }
+        };
+    }
 }
