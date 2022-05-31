@@ -68,6 +68,7 @@ public class SuggestionsPopUp implements IPopupMenuConstructor {
       final AbstractDocument xlDoc = (AbstractDocument) comp.getDocument();
 
 //      if (!Core.getSpellChecker().isCorrect(word)) {
+      // todo divvun spell
       if (true) {
          // get the suggestions and create a menu
 //         List<String> suggestions = Core.getSpellChecker().suggest(word);

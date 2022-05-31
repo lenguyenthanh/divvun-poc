@@ -28,22 +28,10 @@ package divvun;
  **************************************************************************/
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.omegat.core.Core;
 import org.omegat.core.CoreEvents;
 import org.omegat.core.events.IApplicationEventListener;
-import org.omegat.externalfinder.item.ExternalFinderItemPopupMenuConstructor;
-import org.omegat.filters2.AbstractFilter;
-import org.omegat.filters2.FilterContext;
-import org.omegat.filters2.Instance;
 import org.omegat.gui.editor.EditorController;
-import org.omegat.util.LinebreakPreservingReader;
-import org.omegat.util.OStrings;
 
 
 public class Divvun {
@@ -54,6 +42,7 @@ public class Divvun {
     public static void loadPlugins() {
         Core.registerMarkerClass(divvun.DivvunMarker.class);
         CoreEvents.registerApplicationEventListener(generateIApplicationEventListener());
+        Dict.Companion.bla();
     }
 
     private static IApplicationEventListener generateIApplicationEventListener() {
