@@ -1,5 +1,11 @@
 # OmegaT plugin development skeleton
 
+## Divvun specific build instruction
+
+- Build jna library with different package: https://github.com/lenguyenthanh/jna
+- Build divvunspell-sdk-java with new jna jar file: https://github.com/divvun/divvunspell-sdk-java/tree/poc-for-divvun-omegaT
+- Use divvunspell-sdk-java jar file in divvun-poc
+
 ## How to get skeleton into your project
 
 It is recommend to use `Use this template` button on upper-right side of github project page,
