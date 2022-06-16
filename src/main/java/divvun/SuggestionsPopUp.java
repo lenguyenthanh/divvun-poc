@@ -28,6 +28,7 @@ import javax.swing.text.JTextComponent;
 public class SuggestionsPopUp implements IPopupMenuConstructor {
    protected final EditorController ec;
 
+   private final Dict dict = new Dict();
    public SuggestionsPopUp(EditorController ec) {
       this.ec = ec;
    }
@@ -69,13 +70,14 @@ public class SuggestionsPopUp implements IPopupMenuConstructor {
 
 //      if (!Core.getSpellChecker().isCorrect(word)) {
       // todo divvun spell
-      if (true) {
+      List<String> suggest = dict.suggest(word);
+      System.out.println("Divvun suggest: " + suggest);
+      if (!suggest.isEmpty()) {
          // get the suggestions and create a menu
 //         List<String> suggestions = Core.getSpellChecker().suggest(word);
-         List<String> suggestions = Collections.singletonList("hello");
 
          // the suggestions
-         for (final String replacement : suggestions) {
+         for (final String replacement : suggest) {
             JMenuItem item = menu.add(replacement);
             item.addActionListener(new ActionListener() {
                // the action: replace the word with the selected
@@ -93,7 +95,7 @@ public class SuggestionsPopUp implements IPopupMenuConstructor {
          }
 
          // what if no action is done?
-         if (suggestions.isEmpty()) {
+         if (suggest.isEmpty()) {
             JMenuItem item = menu.add(OStrings.getString("SC_NO_SUGGESTIONS"));
             item.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent e) {

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     // groovy
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.0"
     checkstyle
     distribution
     maven
@@ -18,19 +18,22 @@ omegat {
 }
 
 dependencies {
+    packIntoJar(kotlin("stdlib-jdk8"))
     packIntoJar("org.slf4j:slf4j-api:1.7.21")
-    // DivvunSpell FFI components
-    packIntoJar("com.github.divvun:divvunspell-sdk-java:df49bed15b")
+    packIntoJar(files("libs/divvun.jar"))
+    implementation(files("libs/divvun.jar"))
 
-    packIntoJar("net.java.dev.jna:jna:5.11.0")
-//    implementation("commons-io:commons-io:2.5")
-//    implementation("commons-lang:commons-lang:2.6")
+    // DivvunSpell FFI components
+//    packIntoJar("com.github.divvun:divvunspell-sdk-java:df49bed15b")
+//    packIntoJar("net.java.dev.jna:jna:5.11.0")
+    implementation(kotlin("stdlib-jdk8"))
+    implementation("commons-io:commons-io:2.5")
+    implementation("commons-lang:commons-lang:2.6")
     implementation("org.slf4j:slf4j-nop:1.7.21")
     testImplementation("junit:junit:4.12")
     testImplementation("xmlunit:xmlunit:1.6")
     testImplementation("org.madlonkay.supertmxmerge:supertmxmerge:2.0.1")
     testImplementation("com.alibaba:fastjson:1.2.17")
-    packIntoJar(kotlin("stdlib-jdk8"))
 }
 
 checkstyle {

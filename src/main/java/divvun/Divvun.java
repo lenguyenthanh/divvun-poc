@@ -42,7 +42,6 @@ public class Divvun {
     public static void loadPlugins() {
         Core.registerMarkerClass(divvun.DivvunMarker.class);
         CoreEvents.registerApplicationEventListener(generateIApplicationEventListener());
-        Dict.Companion.bla();
     }
 
     private static IApplicationEventListener generateIApplicationEventListener() {

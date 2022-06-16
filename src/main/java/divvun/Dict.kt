@@ -7,7 +7,12 @@ import java.nio.file.Files
 
 
 class Dict {
+    private val speller = SpellerArchive.open("/Library/Services/se.bundle/Contents/Resources/se.zhfst").speller()
 
+    fun suggest(word: String): List<String> =
+        speller.suggest(word)
+
+    fun isCorrect(word: String) = speller.isCorrect(word)
 
     companion object {
         init {
@@ -19,14 +24,14 @@ class Dict {
             val nativeLibTmpFile = File(tmpDir, libName)
             nativeLibTmpFile.deleteOnExit()
             url.openStream().use { input -> Files.copy(input, nativeLibTmpFile.toPath()) }
-            System.load(nativeLibTmpFile.absolutePath)
+            try {
+                System.load(nativeLibTmpFile.absolutePath)
+            } catch (ex: Throwable) {
+                println("aaaaaaaaaaaa $ex")
+            }
             println(nativeLibTmpFile.absolutePath)
         }
-        fun bla() {
-            val ar = SpellerArchive.open("/Library/Services/se.bundle/Contents/Resources/se.zhsft")
-            println(ar)
 
-            println(ar.speller().suggest("same"))
-        }
+
     }
 }
